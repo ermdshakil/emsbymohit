@@ -99,11 +99,10 @@ public class EmployeeContro {
 	
 	
 	
-//	@PostMapping("/")
-//	public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto){
-//		EmployeeDto createEmployeeDto=this.employeeService.createEmployee(employeeDto);
-//		return new ResponseEntity<EmployeeDto>(createEmployeeDto,HttpStatus.CREATED);
-//	}
+	@PostMapping("/create")
+	public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto){
+		EmployeeDto createEmployeeDto=this.employeeService.createEmployee(employeeDto);
+		return new ResponseEntity<EmployeeDto>(createEmployeeDto,HttpStatus.CREATED);	}
 	//update
 		@PutMapping("{employeeId}")
 		public ResponseEntity<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDto,@PathVariable Long employeeId){
