@@ -71,8 +71,8 @@ public class EmployeeContro {
 		
 		Employee employee=this.objectMapper.readValue(image, Employee.class);
 		employee.setZName(file.getOriginalFilename());
-		employee.setZmageName(file.getOriginalFilename());
-		logger.info("image :{})",employee.getZmageName());
+		employee.setZimageName(file.getOriginalFilename());
+		logger.info("image :{})",employee.getZimageName());
 		EmployeeDto employeeDto=modelMapper.map(employee, EmployeeDto.class);
 //		employeeDto.setZmageName(file.getOriginalFilename());
 //		logger.info("image :{})",employeeDto.getZmageName());
@@ -99,11 +99,11 @@ public class EmployeeContro {
 	
 	
 	
-//	@PostMapping("/")
-//	public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto){
-//		EmployeeDto createEmployeeDto=this.employeeService.createEmployee(employeeDto);
-//		return new ResponseEntity<EmployeeDto>(createEmployeeDto,HttpStatus.CREATED);
-//	}
+	@PostMapping("/create")
+	public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto){
+		EmployeeDto createEmployeeDto=this.employeeService.createEmployee(employeeDto);
+		return new ResponseEntity<EmployeeDto>(createEmployeeDto,HttpStatus.CREATED);
+	}
 	//update
 		@PutMapping("{employeeId}")
 		public ResponseEntity<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDto,@PathVariable Long employeeId){

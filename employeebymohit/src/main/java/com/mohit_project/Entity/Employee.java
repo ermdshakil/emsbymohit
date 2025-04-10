@@ -26,13 +26,12 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long employeeId;
-	private String name;
-	private String zName;
+	private String fname;
+	private String lname;
 	private String email;
 	private String mobile;
 	private String dob;
 	private String password;
-	private String fname;
 	private Double salary;
 	private String address;
 	private String jod;
@@ -42,7 +41,8 @@ public class Employee {
 	private String status;
 	private String site;
 	private String work;
-	private String zmageName;
+	private String zimageName;
+	private String zName;
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	 @JsonManagedReference
     private List<Attendance> attendances;
@@ -63,7 +63,7 @@ public class Employee {
 	 @Override
 	    public String toString() {
 	        // Ensure there's no recursive call here
-	        return "Employee [id=" + employeeId + ", name=" + name + "]";
+	        return "Employee [id=" + employeeId + ", name=" + fname +" lname"+ "]";
 	    }
 
 }

@@ -10,13 +10,12 @@ import lombok.NoArgsConstructor;
 public class EmployeeDto {
 	
 	private Long employeeId;
-	private String name;
-	private String zName;
+	private String fname;
+	private String lname;
 	private String email;
 	private String mobile;
 	private String dob;
 	private String password;
-	private String fname;
 	private Double salary;
 	private String address;
 	private String jod;
@@ -26,7 +25,8 @@ public class EmployeeDto {
 	private String status;
 	private String site;
 	private String work;
-	private String zmageName;
+	private String zimageName;
+	private String zName;
 
 
 }

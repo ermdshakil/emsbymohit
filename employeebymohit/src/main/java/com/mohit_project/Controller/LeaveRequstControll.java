@@ -20,7 +20,7 @@ import com.mohit_project.Service.LeaveRequstService;
 
 
 
-@RequestMapping("/api")
+@RequestMapping("/api/leave")
 @RestController
 public class LeaveRequstControll {
 	
@@ -37,7 +37,7 @@ public class LeaveRequstControll {
 	        return leaveRequest != null ? ResponseEntity.ok(leaveRequest) : ResponseEntity.notFound().build();
 	    }
 
-	    @PostMapping("/leave/{employeeId}")
+	    @PostMapping("/{employeeId}")
 	    public LeaveRequst createLeaveRequest(@PathVariable Long employeeId, @RequestBody LeaveRequst leaveRequest) {
 	        return leaveRequstService.createLeaveRequst(leaveRequest, employeeId);
 	    }
@@ -53,7 +53,7 @@ public class LeaveRequstControll {
 	        leaveRequstService.deleteLeaveRequst(id);
 	        return ResponseEntity.noContent().build();
 	    }
-	    @GetMapping("/leave/{employeeId}")
+	    @GetMapping("/{employeeId}")
 	    public ResponseEntity<List<LeaveRequst>> getLeaveRequestsByEmployeeId(@PathVariable Long employeeId) {
 	        List<LeaveRequst> leaveRequests = leaveRequstService.getLeaveRequestsByEmployeeId(employeeId);
 	        return leaveRequests != null && !leaveRequests.isEmpty() ? ResponseEntity.ok(leaveRequests) : ResponseEntity.notFound().build();

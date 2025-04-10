@@ -26,6 +26,7 @@ public class LeaveRequst {
 	private String remark;
 	private String leaveFrom;
 	private String leaveTo;
+	private String Description;
 	
 	 @ManyToOne
 	    @JoinColumn(name = "employee_id", nullable = false)

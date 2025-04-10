@@ -58,7 +58,7 @@ public class EmployeeServiceImp implements EmployeeService {
 		employee.setJod(employeeDto.getJod());
 		employee.setMarritalStatus(employeeDto.getMarritalStatus());
 		employee.setMobile(employeeDto.getMobile());
-		employee.setName(employeeDto.getName());
+		employee.setLname(employeeDto.getLname());
 		employee.setPassword(employeeDto.getPassword());
 		employee.setSalary(employeeDto.getSalary());
 		employee.setSite(employeeDto.getSite());

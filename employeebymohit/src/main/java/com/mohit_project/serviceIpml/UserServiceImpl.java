@@ -8,7 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mohit_project.Entity.Employee;
 import com.mohit_project.Entity.User;
 import com.mohit_project.Repositry.UserRepo;
 import com.mohit_project.Service.UserService;
@@ -70,6 +69,8 @@ public class UserServiceImpl implements UserService{
 		List<User> users=this.userRepo.findAll();
 		List<UserDto> getAllUser=users.stream().map((ui)->this.modelMapper.map(ui, UserDto.class)).collect(Collectors.toList());
 		return getAllUser;
+		
+		
 	}
 
 	@Override

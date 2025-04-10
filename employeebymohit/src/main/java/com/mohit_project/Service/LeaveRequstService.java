@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.mohit_project.Entity.Employee;
 import com.mohit_project.Entity.LeaveRequst;
 import com.mohit_project.Repositry.EmployeeRepo;
 import com.mohit_project.Repositry.LeaveRequstRepo;
+import com.mohit_project.email.EmailRequest;
+import com.mohit_project.email.EmailService;
 
 
 
@@ -21,6 +24,14 @@ public class LeaveRequstService {
 	
 	@Autowired
 	private EmployeeRepo employeeRepo;
+	@Autowired
+	private EmailService emailService;
+	
+	@Value("${ems.email.tracker}")
+	private boolean tracker;
+	
+	@Value("${mail.username}")
+	private String emailFrom;
 	
 	public List<LeaveRequst> getAllLeaveRequsts() {
         return leaveRequstRepo.findAll();
@@ -35,7 +46,22 @@ public class LeaveRequstService {
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
 
         leaveRequst.setEmployee(employee);
-        return leaveRequstRepo.save(leaveRequst);
+        leaveRequst.setRemark("pending");
+        LeaveRequst leaveReq = leaveRequstRepo.save(leaveRequst);
+        String subject = leaveRequst.getLeaveType() +" Submitted";
+        String body = "Hi "
+        		+employee.getFname()
+        		+","+"\n"
+        		+ "Your "+ leaveRequst.getLeaveType()
+        		+" from "
+        		+ leaveRequst.getLeaveFrom() 
+        		+" to "
+        		+leaveRequst.getLeaveTo()
+        		+" has successfully submitted."
+        		+"\n"+"\n"+"Thanks & Regards"+
+        		"\n"+ emailFrom;
+        emailService.sendSingleEmail(employee.getEmail(), subject, body, tracker);
+        return leaveReq;
     }
 
 
